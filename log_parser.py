@@ -3,7 +3,7 @@ import pandas as pd
 import os
 import argparse
 
-def extract_suricata_logs(file_path):
+def extract_suricata_logs(file_path, output_excel=None):
     # Memastikan file ada sebelum diproses [cite: 242, 283]
     if not os.path.exists(file_path):
         print(f"Error: File {file_path} tidak ditemukan.")
@@ -36,18 +36,25 @@ def extract_suricata_logs(file_path):
 
         # Filter hanya kolom yang benar-benar ada di dalam file log
         available_columns = [col for col in columns_to_show if col in df.columns]
+        df_final = df[available_columns]
         
-        # Pengaturan tampilan tabel agar rapi dan tidak terpotong
+        # Pengaturan tampilan tabel agar rapi dan tidak terpotong di terminal
         pd.set_option('display.max_rows', None)
         pd.set_option('display.max_columns', None)
         pd.set_option('display.width', 1000)
         pd.set_option('display.colheader_justify', 'left')
 
-        # Menampilkan hasil ekstraksi
+        # Menampilkan hasil ekstraksi di terminal
         print("\n" + "="*50)
         print("HASIL EKSTRAKSI LOG SURICATA")
         print("="*50)
-        print(df[available_columns].to_string(index=False))
+        print(df_final.to_string(index=False))
+
+        # Fitur Ekspor ke Excel jika argumen -o diberikan
+        if output_excel:
+            # Menggunakan engine openpyxl untuk menulis file excel
+            df_final.to_excel(output_excel, index=False, engine='openpyxl')
+            print(f"\n[SUKSES] Data telah diekspor ke: {output_excel}")
 
     except Exception as e:
         print(f"Terjadi kesalahan saat memproses log: {e}")
@@ -56,10 +63,13 @@ if __name__ == "__main__":
     # Inisialisasi parser argumen [cite: 399]
     parser = argparse.ArgumentParser(description="Tool Ekstraksi Log Suricata untuk Penelitian TA")
     
-    # Menambahkan argumen -f atau --file
+    # Argumen -f (Wajib) untuk file input
     parser.add_argument("-f", "--file", required=True, help="Path menuju file log (contoh: eve.json)")
+    
+    # Argumen -o (Opsional) untuk nama file excel
+    parser.add_argument("-o", "--output", help="Nama file Excel luaran (contoh: hasil_pretest.xlsx)")
     
     args = parser.parse_args()
     
-    # Menjalankan fungsi dengan path file dari command line
-    extract_suricata_logs(args.file)
+    # Menjalankan fungsi
+    extract_suricata_logs(args.file, args.output)
