@@ -1,24 +1,27 @@
 import json
 import pandas as pd
 import os
+import argparse
 
 def extract_suricata_logs(file_path):
+    # Memastikan file ada sebelum diproses [cite: 242, 283]
     if not os.path.exists(file_path):
         print(f"Error: File {file_path} tidak ditemukan.")
         return
 
     logs = []
     try:
-        # Membaca file eve.json per baris
+        print(f"Sedang memproses file: {file_path}...")
+        
+        # Membaca file baris demi baris (EVE JSON format) [cite: 349]
         with open(file_path, 'r') as f:
             for line in f:
                 logs.append(json.loads(line))
         
-        # Meratakan (flatten) JSON yang bersarang (seperti bagian 'alert') menjadi kolom tabel
+        # Mengonversi list JSON menjadi DataFrame Pandas [cite: 349, 377]
         df = pd.json_normalize(logs)
 
-        # Daftar kolom yang ingin ditampilkan sesuai permintaanmu
-        # Kita menggunakan .get() atau pengecekan kolom agar skrip tidak error jika kolom tertentu tidak ada
+        # Daftar kolom utama untuk analisis sesuai Bab 3.5 Proposal [cite: 350, 356]
         columns_to_show = [
             'timestamp', 
             'event_type', 
@@ -31,21 +34,32 @@ def extract_suricata_logs(file_path):
             'alert.category'
         ]
 
-        # Memastikan hanya kolom yang tersedia di log yang akan ditampilkan
+        # Filter hanya kolom yang benar-benar ada di dalam file log
         available_columns = [col for col in columns_to_show if col in df.columns]
         
-        # Menampilkan tabel dengan semua baris (all information)
-        # pd.set_option digunakan agar tampilan di terminal tidak terpotong
+        # Pengaturan tampilan tabel agar rapi dan tidak terpotong
         pd.set_option('display.max_rows', None)
         pd.set_option('display.max_columns', None)
         pd.set_option('display.width', 1000)
         pd.set_option('display.colheader_justify', 'left')
 
+        # Menampilkan hasil ekstraksi
+        print("\n" + "="*50)
+        print("HASIL EKSTRAKSI LOG SURICATA")
+        print("="*50)
         print(df[available_columns].to_string(index=False))
 
     except Exception as e:
         print(f"Terjadi kesalahan saat memproses log: {e}")
 
-# Nama file log sesuai draf proposal (Bab 3.5)
-log_file = "eve.json" 
-extract_suricata_logs(log_file)
+if __name__ == "__main__":
+    # Inisialisasi parser argumen [cite: 399]
+    parser = argparse.ArgumentParser(description="Tool Ekstraksi Log Suricata untuk Penelitian TA")
+    
+    # Menambahkan argumen -f atau --file
+    parser.add_argument("-f", "--file", required=True, help="Path menuju file log (contoh: eve.json)")
+    
+    args = parser.parse_args()
+    
+    # Menjalankan fungsi dengan path file dari command line
+    extract_suricata_logs(args.file)
