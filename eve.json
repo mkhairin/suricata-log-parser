@@ -1,0 +1,94 @@
+{
+    "timestamp": "2025-01-02T10:15:21.123456+0700",
+    "flow_id": 9876543210,
+    "event_type": "alert",
+    "src_ip": "192.168.1.10",
+    "src_port": 54321,
+    "dest_ip": "192.168.1.1",
+    "dest_port": 80,
+    "proto": "TCP",
+    "alert": {
+        "action": "allowed",
+        "gid": 1,
+        "signature_id": 2100498,
+        "rev": 7,
+        "signature": "GPL ATTACK_RESPONSE id check returned root",
+        "category": "Potentially Bad Traffic",
+        "severity": 2
+    }
+}
+
+{
+    "timestamp": "2025-01-02T10:16:05.654321+0700",
+    "flow_id": 9876543222,
+    "event_type": "dns",
+    "src_ip": "192.168.1.20",
+    "src_port": 5353,
+    "dest_ip": "8.8.8.8",
+    "dest_port": 53,
+    "proto": "UDP",
+    "dns": {
+        "type": "query",
+        "id": 4321,
+        "rrname": "example.com",
+        "rrtype": "A",
+        "tx_id": 4321
+    }
+}
+
+{
+    "timestamp": "2025-01-02T10:17:42.000111+0700",
+    "flow_id": 9876543333,
+    "event_type": "http",
+    "src_ip": "192.168.1.30",
+    "src_port": 41234,
+    "dest_ip": "93.184.216.34",
+    "dest_port": 80,
+    "proto": "TCP",
+    "http": {
+        "hostname": "example.com",
+        "url": "/login",
+        "http_user_agent": "Mozilla/5.0",
+        "http_method": "POST",
+        "status": 200,
+        "protocol": "HTTP/1.1"
+    }
+}
+
+{
+    "timestamp": "2025-01-02T10:18:55.999888+0700",
+    "flow_id": 9876543444,
+    "event_type": "alert",
+    "src_ip": "10.10.10.5",
+    "src_port": 4444,
+    "dest_ip": "192.168.1.50",
+    "dest_port": 22,
+    "proto": "TCP",
+    "alert": {
+        "action": "blocked",
+        "gid": 1,
+        "signature_id": 2001219,
+        "rev": 3,
+        "signature": "ET SCAN Potential SSH Scan",
+        "category": "Attempted Information Leak",
+        "severity": 1
+    }
+}
+
+{
+    "timestamp": "2025-01-02T10:19:30.777666+0700",
+    "flow_id": 9876543555,
+    "event_type": "flow",
+    "src_ip": "192.168.1.40",
+    "src_port": 49876,
+    "dest_ip": "172.217.160.78",
+    "dest_port": 443,
+    "proto": "TCP",
+    "flow": {
+        "pkts_toserver": 12,
+        "pkts_toclient": 10,
+        "bytes_toserver": 2048,
+        "bytes_toclient": 4096,
+        "start": "2025-01-02T10:19:10.000000+0700"
+    }
+}
