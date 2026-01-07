@@ -27,7 +27,7 @@ def process_suricata(file_path, output_excel, full_excel, show_table, show_stats
         # 1. EKSPOR LOG PENTING
         if output_excel:
             output_excel = ensure_xlsx_extension(output_excel)
-            cols = ['timestamp', 'event_type', 'src_ip', 'src_port', 'dest_ip', 'dest_port', 'proto', 'alert.signature', 'alert.category']
+            cols = ['timestamp', 'flow_id', 'event_type', 'src_ip', 'src_port', 'dest_ip', 'dest_port', 'proto', 'alert.signature', 'alert.category']
             available_cols = [c for c in cols if c in df.columns]
             
             df[available_cols].to_excel(output_excel, index=False, engine='openpyxl')
@@ -73,7 +73,7 @@ def process_suricata(file_path, output_excel, full_excel, show_table, show_stats
             print("\n" + "="*60)
             print("DETAIL PAYLOAD WEB (HTTP)")
             print("="*60)
-            web_cols = ['timestamp', 'src_ip', 'dest_ip', 'http.hostname', 'http.url', 'http.http_method']
+            web_cols = ['timestamp', 'src_ip', 'dest_ip', 'http.hostname', 'http.url', 'http.http_method', 'http.user_agent', 'http.http_user_agent']
             available_web = [c for c in web_cols if c in df.columns]
             
             if 'http.url' in df.columns:
