@@ -1,1 +1,0 @@
-{"timestamp":"2025-01-02T10:15:21.123456+0700","flow_id":9876543210,"event_type":"alert","src_ip":"192.168.1.10","src_port":54321,"dest_ip":"192.168.1.1","dest_port":80,"proto":"TCP","alert":{"action":"allowed","gid":1,"signature_id":2100498,"rev":7,"signature":"GPL ATTACK_RESPONSE id check returned root","category":"Potentially Bad Traffic","severity":2}}
