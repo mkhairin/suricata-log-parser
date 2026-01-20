@@ -1,0 +1,11 @@
+01/14/2026-22:34:37.805537  [**] [1:2210058:2] SURICATA STREAM suspected RST injection [**] [Classification: Generic Protocol Command Decode] [Priority: 3] {TCP} 192.168.113.50:22 -> 192.168.113.1:43720
+01/14/2026-22:35:29.486512  [**] [1:2260002:1] SURICATA Applayer Detect protocol only one direction [**] [Classification: Generic Protocol Command Decode] [Priority: 3] {TCP} 192.168.113.110:35088 -> 192.168.113.50:5432
+01/14/2026-22:35:35.314661  [**] [1:2024364:5] ET SCAN Possible Nmap User-Agent Observed [**] [Classification: Web Application Attack] [Priority: 1] {TCP} 192.168.113.110:49956 -> 192.168.113.50:80
+01/14/2026-22:35:35.316035  [**] [1:2024364:5] ET SCAN Possible Nmap User-Agent Observed [**] [Classification: Web Application Attack] [Priority: 1] {TCP} 192.168.113.110:49970 -> 192.168.113.50:80
+01/14/2026-22:35:35.362362  [**] [1:2024364:5] ET SCAN Possible Nmap User-Agent Observed [**] [Classification: Web Application Attack] [Priority: 1] {TCP} 192.168.113.110:49980 -> 192.168.113.50:80
+01/14/2026-22:35:35.363907  [**] [1:2024364:5] ET SCAN Possible Nmap User-Agent Observed [**] [Classification: Web Application Attack] [Priority: 1] {TCP} 192.168.113.110:49988 -> 192.168.113.50:80
+01/14/2026-22:39:12.823226  [**] [1:2260002:1] SURICATA Applayer Detect protocol only one direction [**] [Classification: Generic Protocol Command Decode] [Priority: 3] {TCP} 192.168.113.110:48004 -> 192.168.113.50:5432
+01/14/2026-22:39:18.124771  [**] [1:2024364:5] ET SCAN Possible Nmap User-Agent Observed [**] [Classification: Web Application Attack] [Priority: 1] {TCP} 192.168.113.110:44104 -> 192.168.113.50:80
+01/14/2026-22:39:18.126363  [**] [1:2024364:5] ET SCAN Possible Nmap User-Agent Observed [**] [Classification: Web Application Attack] [Priority: 1] {TCP} 192.168.113.110:44118 -> 192.168.113.50:80
+01/14/2026-22:39:18.208423  [**] [1:2024364:5] ET SCAN Possible Nmap User-Agent Observed [**] [Classification: Web Application Attack] [Priority: 1] {TCP} 192.168.113.110:44128 -> 192.168.113.50:80
+01/14/2026-22:39:18.211892  [**] [1:2024364:5] ET SCAN Possible Nmap User-Agent Observed [**] [Classification: Web Application Attack] [Priority: 1] {TCP} 192.168.113.110:44136 -> 192.168.113.50:80

@@ -2,7 +2,7 @@ import json
 import pandas as pd
 import os
 import argparse
-
+from colorama import Fore, Style, init
 
 def ensure_xlsx_extension(filename):
     """
@@ -50,7 +50,8 @@ def process_suricata(file_path, output_excel, full_excel, show_table, show_stats
             cols = [
                 'timestamp', 'flow_id', 'event_type',
                 'src_ip', 'src_port', 'dest_ip', 'dest_port', 'proto',
-                'alert.signature', 'alert.category', 'alert.action', 'alert.severity'
+                'alert.signature', 'alert.category', 'alert.action', 'alert.gid', 'alert.signature_id', 'alert.severity', 'http.http_method', 'http.url', 'http.http_user_agent',
+                'http.http_content_type', 'fileinfo.filename'
             ]
 
             # Hanya ambil kolom yang benar-benar ada di data
